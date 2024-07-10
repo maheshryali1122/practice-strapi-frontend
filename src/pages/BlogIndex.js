@@ -56,6 +56,11 @@ export default ({ posts }) => {
 
   console.log(posts);
 
+  // Check if posts is defined and has data
+  if (!posts || !posts.data) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <AnimationRevealPage>
       <Header />
@@ -65,13 +70,12 @@ export default ({ posts }) => {
             <Heading>{headingText}</Heading>
           </HeadingRow>
           <Posts>
-            {posts?.data?.slice(0, visible).map((post, index) => {
-              // Safely access nested properties with optional chaining
-              const imageUrl = post?.attributes?.strapi?.data?.[0]?.attributes?.url
-                ? `http://34.214.219.81:32768${post.attributes.strapi.data[0].attributes.url}`
+            {posts.data.slice(0, visible).map((post, index) => {
+              // Check if necessary nested properties exist
+              const strapiData = post?.attributes?.strapi?.data;
+              const imageUrl = strapiData && strapiData[0]?.attributes?.url
+                ? `http://34.214.219.81:32768${strapiData[0].attributes.url}`
                 : null;
-
-              console.log('Constructed Image URL:', imageUrl);
 
               if (!imageUrl) {
                 console.error('Image URL is not correctly formed for post:', post);
@@ -98,7 +102,7 @@ export default ({ posts }) => {
               );
             })}
           </Posts>
-          {visible < (posts?.data?.length || 0) && (
+          {visible < posts.data.length && (
             <ButtonContainer>
               <LoadMoreButton onClick={onLoadMoreClick}>Load More</LoadMoreButton>
             </ButtonContainer>
