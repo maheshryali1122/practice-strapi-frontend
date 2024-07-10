@@ -99,7 +99,7 @@ export default ({ posts }) => {
           </Posts>
           {visible < (posts?.data?.length || 0) && (
             <ButtonContainer>
-              <LoadMoreButton onClick={onLoadMoreClick}>Load More</LoadMoreButton>
+              <LoadMoreButton onClick={onLoadMoreClick}>Load More</Load MoreButton>
             </ButtonContainer>
           )}
         </ContentWithPaddingXl>
