@@ -12,7 +12,7 @@ import useFetch from "hooks/useFetch";
 
 
 export default function App() {
-  const {loading, error,data} = useFetch('http://35.90.112.169:32772/api/blogs?populate=*');
+  const {loading, error,data} = useFetch('http://34.214.219.81:32768/api/blogs?populate=*');
   if(loading) return <p>Loading...</p>
   if(error) return console.log(error)
 
