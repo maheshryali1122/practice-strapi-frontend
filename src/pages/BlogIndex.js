@@ -65,8 +65,8 @@ export default ({ posts }) => {
             <Heading>{headingText}</Heading>
           </HeadingRow>
           <Posts>
-            {posts.data.slice(0, visible).map((post, index) => {
-              const imageUrl = post.attributes.strapi.data[0]?.attributes.url
+            {posts?.data?.slice(0, visible).map((post, index) => {
+              const imageUrl = post?.attributes?.strapi?.data?.[0]?.attributes?.url
                 ? `http://34.214.219.81:32768${post.attributes.strapi.data[0].attributes.url}`
                 : null;
 
@@ -77,19 +77,19 @@ export default ({ posts }) => {
               }
 
               return (
-                <PostContainer key={index} featured={post.featured}>
+                <PostContainer key={index} featured={post?.featured}>
                   <Link to={`/blog/${post.id}`}>
                     <Post className="group">
                       {imageUrl ? (
-                        <Image imageSrc={imageUrl} alt={`Image for ${post.attributes.strapiapp}`} />
+                        <Image imageSrc={imageUrl} alt={`Image for ${post?.attributes?.strapiapp}`} />
                       ) : (
                         <p>Image not available</p>
                       )}
                       <Info>
-                        <Category>{post.attributes.category}</Category>
-                        <CreationDate>{post.attributes.publishedAt}</CreationDate>
-                        <Title>{post.attributes.strapiapp}</Title>
-                        {post.featured && post.attributes.description && <Description>{post.attributes.description}</Description>}
+                        <Category>{post?.attributes?.category}</Category>
+                        <CreationDate>{post?.attributes?.publishedAt}</CreationDate>
+                        <Title>{post?.attributes?.strapiapp}</Title>
+                        {post?.featured && post?.attributes?.description && <Description>{post.attributes.description}</Description>}
                       </Info>
                     </Post>
                   </Link>
@@ -97,7 +97,7 @@ export default ({ posts }) => {
               );
             })}
           </Posts>
-          {visible < posts.data.length && (
+          {visible < (posts?.data?.length || 0) && (
             <ButtonContainer>
               <LoadMoreButton onClick={onLoadMoreClick}>Load More</LoadMoreButton>
             </ButtonContainer>
