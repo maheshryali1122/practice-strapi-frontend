@@ -66,6 +66,7 @@ export default ({ posts }) => {
           </HeadingRow>
           <Posts>
             {posts?.data?.slice(0, visible).map((post, index) => {
+              // Safely access nested properties with optional chaining
               const imageUrl = post?.attributes?.strapi?.data?.[0]?.attributes?.url
                 ? `http://34.214.219.81:32768${post.attributes.strapi.data[0].attributes.url}`
                 : null;
@@ -99,7 +100,7 @@ export default ({ posts }) => {
           </Posts>
           {visible < (posts?.data?.length || 0) && (
             <ButtonContainer>
-              <LoadMoreButton onClick={onLoadMoreClick}>Load More</Load MoreButton>
+              <LoadMoreButton onClick={onLoadMoreClick}>Load More</LoadMoreButton>
             </ButtonContainer>
           )}
         </ContentWithPaddingXl>
