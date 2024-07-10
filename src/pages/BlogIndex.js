@@ -74,7 +74,7 @@ export default ({ posts }) => {
               // Check if necessary nested properties exist
               const strapiData = post?.attributes?.strapi?.data;
               const imageUrl = strapiData && strapiData[0]?.attributes?.url
-                ? `http://34.211.38.13:1337${strapiData[0].attributes.url}`
+                ? `http://ipaddress:1337${strapiData[0].attributes.url}`
                 : null;
 
               if (!imageUrl) {
